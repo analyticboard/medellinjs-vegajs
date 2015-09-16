@@ -1,0 +1,7 @@
+{
+  "name": "presentation-the-future-of-web-apps",
+  "version": "0.0.0",
+  "dependencies": {
+    "prism": "gh-pages"
+  }
+}

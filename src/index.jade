@@ -1,0 +1,58 @@
+mixin slide(classNames)
+  if classNames
+    section(class=classNames, data-bespoke-backdrop='backdrop ' + classNames.split(' ').map(function(className) { return 'backdrop--' + className; }).join(' '))
+      block
+  else
+    section
+      block
+
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Curso Roadmapping Tecnológico - Presentación y Programa
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+    link(href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700', rel='stylesheet', type='text/css')
+
+  body
+
+    article
+
+      +slide('purple')
+        h1
+          | Título
+          br
+          span.subtitle Subtítulo
+        h3
+          | Jaime Andrés García
+          br
+          | Organización
+          br
+          | Medellín, Fecha
+
+      +slide('roadmap')
+        .tint
+          h1 Ejemplo Imagen
+          h6 Fuente imagen: 20somethingkidsand1kookyteacher.com
+      +slide('green cascade')
+          h2 Ejemplo Texto con Fondo
+      +slide('cascade')
+        h1 Ejemplo Texto con Imagen
+        img(src="images/test-image.jpg",width="66%")
+      +slide('blue cascade')
+        h2 Ejemplo Texto con Fondo
+      +slide('code')
+        h2 Ejemplo con código
+        pre.language-javascript
+          code.
+            function showMilitaryTime() {
+                 if (document.theForm.showMilitary[0].checked) {
+                      return true;
+                 }
+                 return false;
+            }
+
+
+    script(src='build/build.js')

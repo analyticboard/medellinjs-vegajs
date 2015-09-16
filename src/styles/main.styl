@@ -1,0 +1,309 @@
+@import 'prism/themes/prism-okaidia.css'
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-style: normal;
+  src: url('../fonts/Roboto-Slab-regular/Roboto-Slab-regular.eot');
+  src: url('../fonts/Roboto-Slab-regular/Roboto-Slab-regular.eot?#iefix') format('embedded-opentype'),
+  local('Roboto Slab Regular'),
+  local('Roboto-Slab-regular'),
+  url('../fonts/Roboto-Slab-regular/Roboto-Slab-regular.woff2') format('woff2'),
+  url('../fonts/Roboto-Slab-regular/Roboto-Slab-regular.woff') format('woff'),
+  url('../fonts/Roboto-Slab-regular/Roboto-Slab-regular.ttf') format('truetype'),
+  url('../fonts/Roboto-Slab-regular/Roboto-Slab-regular.svg#RobotoSlab') format('svg');
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-weight: 700;
+  font-style: normal;
+  src: url('../fonts/Roboto-Slab-700/Roboto-Slab-700.eot');
+  src: url('../fonts/Roboto-Slab-700/Roboto-Slab-700.eot?#iefix') format('embedded-opentype'),
+  local('Roboto Slab Bold'),
+  local('Roboto-Slab-700'),
+  url('../fonts/Roboto-Slab-700/Roboto-Slab-700.woff2') format('woff2'),
+  url('../fonts/Roboto-Slab-700/Roboto-Slab-700.woff') format('woff'),
+  url('../fonts/Roboto-Slab-700/Roboto-Slab-700.ttf') format('truetype'),
+  url('../fonts/Roboto-Slab-700/Roboto-Slab-700.svg#RobotoSlab') format('svg');
+}
+
+h1
+  border: none
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight bold
+  font-size 40px
+  font-family: 'Roboto Slab', serif
+  padding: 0
+
+h2
+  border: none
+  letter-spacing: 0;
+  font-weight bold
+  text-transform: none;
+  font-family: 'Roboto Slab', serif
+  padding: 0
+h3
+  font-size 30px
+  font-family: 'Roboto Slab', serif
+  font-style: normal
+  padding: 0
+p
+  font-size 24px
+  font-family: 'Roboto Slab', serif
+
+strong
+  font-weight: 700
+
+.avatar
+  filter: grayscale(30%)
+  width: 120px
+  height: @width
+  border-radius: 100%
+  margin: .5em 0
+  background-size: cover
+  background-position: 50% 50%
+  border: 2px solid white
+
+li
+  margin .8em
+
+.bespoke-parent
+  color: #333
+  background: white
+h1
+  border-color: white
+
+.bespoke-slide
+  perspective: 600px
+  font-family: 'Roboto Slab', serif
+  p,h1
+    margin-top 0.5em
+    margin-bottom 0.5em
+
+.bespoke-backdrop-active
+  opacity: 1
+
+pre
+  text-align: left
+
+code[class*="language-"],
+pre[class*="language-"]
+  color: #333
+  font-family: monaco, andale mono !important
+  line-height: 150%
+  font-size: 30px
+  text-shadow: none
+
+.token.punctuation
+  color: #333
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable
+  color: #333
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted
+  color: #07F
+
+.token.atrule,
+.token.attr-value
+  color: #00FF51
+
+cascade(index)
+  .5s + (index * .3s)
+
+.cascade
+  & > *
+    transition: all .8s ease
+    transform: translateZ(0)
+    opacity: 1
+    .bespoke-active &,
+    .bespoke-active&
+      transition-delay: cascade(0)
+      &:nth-child(2)
+        transition-delay: cascade(1)
+      &:nth-child(3)
+        transition-delay: cascade(2)
+      &:nth-child(4)
+        transition-delay: cascade(3)
+      &:nth-child(5)
+        transition-delay: cascade(4)
+      &:nth-child(6)
+        transition-delay: cascade(5)
+      &:nth-child(7)
+        transition-delay: cascade(6)
+    .bespoke-after &,
+    .bespoke-after&
+      transform: translateZ(0) translateY(15px)
+      opacity: 0
+      &.avatar
+        transform: translateZ(0) translateY(15px) scale(1.2) rotateX(30deg)
+
+
+iframe.phone
+  background: white
+  border: 20px solid #222
+  border-width: 30px 15px 50px 15px
+  border-radius: 10px
+  width: 240px
+  height: 378px
+  transform: translateZ(0)
+  transition: transform 2s ease
+  transition-delat: 1s
+  .bespoke-after &
+    transform: translateZ(0) translateY(10px) rotateX(15deg)
+
+.orange
+  color: white
+  h1
+    border-color: white
+.backdrop--orange
+  background: #FF7A40
+
+.yellow
+  color: #222
+.backdrop--yellow
+  background: #FFD945
+
+.green
+  color: white
+.backdrop--green
+  background: #0F976E
+
+.blue
+  color: #fff
+  .subtitle
+    color #AEDA15
+.backdrop--blue
+  background: #195395
+
+.red
+  color: white
+  h1
+    border-color: white
+.backdrop--red
+  background: #E42516
+
+.purple
+  color: white
+  font-size: 30px
+  .subtitle
+    color #AEDA15
+.backdrop--purple
+  background: #A41088
+
+.white
+  color: #222
+.backdrop--white
+  background: white
+
+.grey
+  color: #222 !important
+.backdrop--grey
+  background: #ccc
+
+.tint
+  background rgba(0,0,0,0.7)
+  color white
+
+
+.references
+  p
+    font-size: 22px
+    margin-top 0.2em
+    margin-bottom 0.2em
+    text-align: justify
+.materialdesign-alarm
+  color: #222
+  justify-content: flex-end
+  h2
+    margin-bottom: 50px
+
+.chrome-task-switcher
+  color: white
+  justify-content: flex-end
+  h2
+    margin-bottom: 50px
+
+.roadmap
+  color: white
+  h1
+    border: none
+    padding: 0.1em
+
+ganesh
+  .&
+    color: black
+    h2
+      background: white
+      padding: 20px
+  .backdrop--&
+    background-image: url('../images/ganesh.jpg')
+    &.bespoke-backdrop-inactive
+      transform: none
+
+.backdrop
+  // &--ganesh
+  //   background-image: url('../images/ganesh.jpg')
+
+  &--roadmap
+    background-color: #ccc
+    background-image: url('../images/map-strings.jpg')
+    background-size: 110%
+    background-repeat: no-repeat
+  &--technology-managements
+    background-image: url('../images/technology-management.png')
+    background-size: 50%
+    background-repeat: no-repeat
+    background-color: #FFF
+    transform-origin: 50% 50%
+    background-position: 50% 30%
+    &.bespoke-backdrop-active
+      opacity: 1
+    &.bespoke-backdrop-inactive
+      transform: scale(1)
+  &--chrome-task-switcher
+    background-image: url('../images/chrome-task-switcher.png')
+    background-size: 22%
+    background-repeat: no-repeat
+    background-color: #222
+    transform-origin: 50% 50%
+    background-position: 50% 30%
+    &.bespoke-backdrop-active
+      opacity: 1
+    &.bespoke-backdrop-inactive
+      // transform: scale(1)
+  &--brucelawson
+    background-image: url('../images/brucelawson.jpg')
+    background-position: 50% 40%
+    transform-origin: 40% 40%
+    &.bespoke-backdrop-active
+      opacity: .3
+  &--jaffathecake
+    background-image: url('../images/jaffathecake.jpg')
+    transform-origin: 40% 40%
+    &.bespoke-backdrop-active
+      opacity: .3
+  &--alexrussell
+    background-image: url('../images/alexrussell.png')
+    transform-origin: 30% 40%
+    &.bespoke-backdrop-active
+      opacity: .3
+  &--nikhilmarathe
+    background-image: url('../images/nikhilmarathe.jpg')
+    background-position: 20% 20%
+    transform-origin: 20% 40%
+    &.bespoke-backdrop-active
+      opacity: .3
+    &.bespoke-backdrop-before
+      transition-delay: 3s
