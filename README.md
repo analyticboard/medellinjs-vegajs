@@ -12,3 +12,6 @@ http://www.w3.org/2003/12/semantic-extractor.html
 
 Releases IoJS
 https://iojs.org/en/releases.html
+
+Vega Editor
+http://vega.github.io/vega-editor/
