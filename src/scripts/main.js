@@ -27,3 +27,16 @@ bespoke.from('article', [
 // This is actually loaded from "bower_components" thanks to
 // debowerify: https://github.com/eugeneware/debowerify
 require('prism');
+
+function parse(spec,id) {
+  console.log(spec);
+  vg.parse.spec(spec, function(chart) {
+    console.log(chart)
+    var view = chart({ el:id });
+    view.viewport(null)
+      .renderer("svg")
+      .update();
+  });
+}
+parse("charts/node.json","#vis");
+parse("charts/node-io.json","#vis2");
