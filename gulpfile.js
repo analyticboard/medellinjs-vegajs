@@ -68,7 +68,16 @@ gulp.task('pdf', ['clean:pdf'], function() {
     .pipe(gulp.dest('dist/pdf'))
     .pipe(connect.reload());
 });
-
+gulp.task('charts', ['clean:charts'], function() {
+  return gulp.src('src/charts/**/*')
+    .pipe(gulp.dest('dist/charts'))
+    .pipe(connect.reload());
+});
+gulp.task('data', ['clean:data'], function() {
+  return gulp.src('src/data/**/*')
+    .pipe(gulp.dest('dist/data'))
+    .pipe(connect.reload());
+});
 gulp.task('clean', function() {
   return gulp.src('dist')
     .pipe(rimraf());
@@ -104,6 +113,16 @@ gulp.task('clean:pdf', function(done) {
     .pipe(rimraf());
 });
 
+gulp.task('clean:charts', function(done) {
+  return gulp.src('dist/charts')
+    .pipe(rimraf());
+});
+
+gulp.task('clean:data', function(done) {
+  return gulp.src('dist/data')
+    .pipe(rimraf());
+});
+
 gulp.task('connect', ['build'], function(done) {
   connect.server({
     root: 'dist',
@@ -119,6 +138,8 @@ gulp.task('watch', function() {
   gulp.watch('src/images/**/*', ['images']);
   gulp.watch('src/fonts/**/*', ['fonts']);
   gulp.watch('src/pdf/**/*', ['pdf']);
+  gulp.watch('src/charts/**/*', ['charts']);
+  gulp.watch('src/data/**/*', ['data']);
   gulp.watch([
     'src/scripts/**/*.js',
     'bespoke-theme-*/dist/*.js' // Allow themes to be developed in parallel
@@ -129,6 +150,6 @@ gulp.task('deploy', ['build'], function(done) {
   ghpages.publish(path.join(__dirname, 'dist'), { logger: gutil.log }, done);
 });
 
-gulp.task('build', ['js', 'html', 'css', 'images','fonts','pdf']);
+gulp.task('build', ['js', 'html', 'css', 'images','fonts','pdf','charts','data']);
 gulp.task('serve', ['connect', 'watch']);
 gulp.task('default', ['build']);

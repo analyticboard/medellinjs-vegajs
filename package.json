@@ -1,7 +1,11 @@
 {
   "name": "presentation-the-future-of-web-apps",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "browserify": "^11.1.0",
+    "browserify-shim": "^3.8.10",
+    "browserify-versionify": "^1.0.6"
+  },
   "devDependencies": {
     "bespoke": "^1.0.0",
     "bespoke-backdrop": "^1.0.0",
@@ -28,6 +32,7 @@
     "insert-css": "^0.2.0",
     "opn": "^0.1.2",
     "through": "^2.3.4",
+    "jstransform": "^11.0.3",
     "d3": "~3.4.1",
     "vega": "~2.2.4"
   },
