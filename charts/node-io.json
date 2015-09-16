@@ -1,0 +1,156 @@
+{
+  "width": 800,
+  "height": 300,
+  "signals": [
+    {
+      "name": "tooltip",
+      "init": {},
+      "streams": [
+        {"type": "mouseover", "expr": "datum"},
+        {"type": "mouseout", "expr": "{}"}
+      ]
+    }
+  ],
+  "data": [
+    {
+      "name": "nodeversions",
+      "url": "data/node-io-versions.csv",
+      "format": {"type": "csv", "parse": { "date":"date"}}
+    }
+  ],
+  "predicates": [
+    {
+      "name": "tooltip", "type": "==",
+      "operands": [{"signal": "tooltip._id"}, {"arg": "id"}]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {"data": "nodeversions", "field": "date"}
+    },
+    {
+      "name": "y",
+      "type": "log",
+      "range": "height",
+      "domain": {"data": "nodeversions", "field": "version"}
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "nodeversions", "field": "engine"},
+      "range": ["#292829","#80bd01"]
+    }
+  ],
+  "axes": [
+    {"type": "x", "scale": "x"},
+    {"type": "y", "scale": "y"}
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "data": "nodeversions",
+        "transform": [{"type": "facet", "groupby": ["engine"]}]
+      },
+      "marks": [
+        {
+          "type": "symbol",
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date"},
+              "y": {"scale": "y", "field": "version"},
+              "fill": {"scale": "color", "field": "engine"},
+              "stroke": {"scale": "color", "field": "engine"}
+            },
+            "update": {
+              "size": {"value": 15},
+              "fillOpacity": {"value": 1}
+            },
+            "hover": {
+              "size": {"value": 40},
+              "fillOpacity": {"value": 0.5}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "transform": [{"type": "filter", "test": "datum.date == time('2009-06-11')"}]
+          },
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date", "offset": 5},
+              "y": {"scale": "y", "field": "version","offset": -5},
+              "fill": {"scale": "color", "field": "engine"},
+              "text": {"field": "engine"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "transform": [{"type": "filter", "test": "datum.date == time('2015-01-14')"}]
+          },
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date", "offset": -20},
+              "y": {"scale": "y", "field": "version"},
+              "fill": {"scale": "color", "field": "engine"},
+              "text": {"field": "engine"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "transform": [{"type": "filter", "test": "datum.date == time('2015-09-08')"}]
+          },
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date", "offset": -45},
+              "y": {"scale": "y", "field": "version","offset": -10},
+              "fill": {"scale": "color", "field": "engine"},
+              "text": {"template": "node 4.0.0. happy ending?"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "transform": [{"type": "filter", "test": "datum.date == time('2015-09-15')"}]
+          },
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date", "offset": 5},
+              "y": {"scale": "y", "field": "version","offset": 3},
+              "fill": {"scale": "color", "field": "engine"},
+              "text": {"template": "or not. Iojs 3.3.1"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "properties": {
+            "enter": {
+              "align": {"value": "center"},
+              "fill": {"value": "#000"}
+            },
+            "update": {
+              "x": {"scale": "x", "signal": "tooltip.date", "offset": 0},
+              "y": {"scale": "y", "signal": "tooltip.version", "offset": -10},
+
+              "text": {"signal": "tooltip.version"}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
