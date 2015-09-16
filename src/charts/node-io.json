@@ -41,7 +41,7 @@
       "name": "color",
       "type": "ordinal",
       "domain": {"data": "nodeversions", "field": "engine"},
-      "range": ["#80bd01","#292829"]
+      "range": ["#292829","#80bd01"]
     }
   ],
   "axes": [
@@ -112,10 +112,25 @@
           },
           "properties": {
             "enter": {
-              "x": {"scale": "x", "field": "date", "offset": -20},
+              "x": {"scale": "x", "field": "date", "offset": -45},
               "y": {"scale": "y", "field": "version","offset": -10},
               "fill": {"scale": "color", "field": "engine"},
-              "text": {"template": "happy ending"},
+              "text": {"template": "node 4.0.0. happy ending?"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "transform": [{"type": "filter", "test": "datum.date == time('2015-09-15')"}]
+          },
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date", "offset": 5},
+              "y": {"scale": "y", "field": "version","offset": 3},
+              "fill": {"scale": "color", "field": "engine"},
+              "text": {"template": "or not. Iojs 3.3.1"},
               "baseline": {"value": "middle"}
             }
           }
