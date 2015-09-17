@@ -1,0 +1,233 @@
+{
+  "width": 800,
+  "height": 300,
+  "signals": [
+    {
+      "name": "tooltip",
+      "init": {"expr": "{date:time('2009-06-11'),version:0.3}"},
+      "streams": [
+        {"type": "symbol:mouseover", "expr": "datum"},
+        {"type": "symbol:mouseout", "expr": "{}"}
+      ],
+      "transform": [
+        {"type": "sort", "by": "orginalversion"}
+      ]
+    }
+  ],
+  "data": [
+    {
+      "name": "nodeversions",
+      "url": "data/node-io-versions.csv",
+      "format": {"type": "csv", "parse": { "date":"date"}}
+    }
+  ],
+  "predicates": [
+    {
+      "name": "tooltip", "type": "==",
+      "operands": [{"signal": "tooltip._id"}, {"arg": "id"}]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {"data": "nodeversions", "field": "date"}
+    },
+    {
+      "name": "originalVersion",
+      "type": "ordinal",
+      "range": "height",
+      "domain": ["2.50","1.01","","","0.5.8","1.01","0.1.7","0.0.5"]
+    },
+    {
+      "name": "y",
+      "type": "log",
+      "range": "height",
+      "domain": {"data": "nodeversions", "field": "version"}
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "nodeversions", "field": "engine"},
+      "range": ["#292829","#80bd01"]
+    }
+  ],
+  "axes": [
+    {"type": "x", "scale": "x","title":"date","offset":5},
+    {"type": "y", "scale": "y","title":"version","offset":5}
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "data": "nodeversions",
+        "transform": [{"type": "facet", "groupby": ["engine"]}]
+      },
+      "marks": [
+        {
+          "type": "symbol",
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date"},
+              "y": {"scale": "y", "field": "version"},
+              "fill": {"scale": "color", "field": "engine"},
+              "stroke": {"scale": "color", "field": "engine"}
+            },
+            "update": {
+              "size": {"value": 15},
+              "fillOpacity": {"value": 1}
+            },
+            "hover": {
+              "size": {"value": 40},
+              "fillOpacity": {"value": 0.5}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "transform": [{"type": "filter", "test": "datum.date == time('2009-06-11')"}]
+          },
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date", "offset": 5},
+              "y": {"scale": "y", "field": "version","offset": -5},
+              "fill": {"scale": "color", "field": "engine"},
+              "text": {"field": "engine"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "transform": [{"type": "filter", "test": "datum.date == time('2015-01-14')"}]
+          },
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date", "offset": -20},
+              "y": {"scale": "y", "field": "version"},
+              "fill": {"scale": "color", "field": "engine"},
+              "text": {"field": "engine"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "transform": [{"type": "filter", "test": "datum.date == time('2015-09-08')"}]
+          },
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date", "offset": -45},
+              "y": {"scale": "y", "field": "version","offset": -10},
+              "fill": {"scale": "color", "field": "engine"},
+              "text": {"template": "{{datum.engine}} {{datum.version|left:1}}.{{datum.version|slice:1}} happy ending?"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "transform": [{"type": "filter", "test": "datum.date == time('2015-09-15')"}]
+          },
+          "properties": {
+            "enter": {
+              "x": {"scale": "x", "field": "date", "offset": 5},
+              "y": {"scale": "y", "field": "version","offset": 3},
+              "fill": {"scale": "color", "field": "engine"},
+              "text": {"template": "or not. {{datum.engine}} {{datum.version|left:1}}.{{datum.version|slice:1}}"},
+              "baseline": {"value": "middle"}
+            }
+          }
+        },
+        {
+          "type": "group",
+          "from": {"data": "tooltip"},
+          "properties": {
+            "update": {
+              "x": {"scale": "x", "signal": "tooltip.date", "offset": 2},
+              "y": {"scale": "y", "signal": "tooltip.version", "offset": -5},
+              "width": {"value": 110},
+              "height": {"value": 20},
+              "fill": {"value": "#fff"},
+              "fillOpacity": {
+                "rule": [
+                  {
+                    "predicate": {
+                      "name": "tooltip",
+                      "id": {
+                        "value": null
+                      }
+                    },
+                    "value": 0
+                  },
+                  {
+                    "value": 0.85
+                  }
+                ]
+              },
+              "stroke": {"value": "#aaa"},
+              "strokeWidth": {
+                "rule": [
+                  {
+                    "predicate": {
+                      "name": "tooltip",
+                      "id": {"value": null}
+                    },
+                    "value": 0
+                  },
+                  {"value":0.5}
+                ]
+              }
+            }
+          },
+
+          "marks": [
+            {
+              "type": "text",
+              "properties": {
+                "enter": {
+                  "fill": {"value": "#000"}
+                },
+                "update": {
+                  "x": {"value": 6},
+                  "y": {"value": 14},
+
+                  "text":{
+                    "rule": [
+                      {
+                        "predicate": {
+                          "name": "tooltip",
+                          "id": {"value": null}
+                        },
+                        "template": ""
+                      },
+                      {"template": "{{tooltip.date|time:'%Y-%m-%d'}} ({{tooltip.version|left:1}}.{{tooltip.version|slice:1}})"}
+                    ]
+                  },
+
+                  "fillOpacity": {
+                    "rule": [
+                      {
+                        "predicate": {
+                          "name": "tooltip",
+                          "id": {"value": null}
+                        },
+                        "value": 0
+                      },
+                      {"value": 1}
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

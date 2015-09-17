@@ -38,5 +38,6 @@ function parse(spec,id) {
       .update();
   });
 }
-parse("charts/node.json","#vis");
-parse("charts/node-io.json","#vis2");
+parse("charts/chart.json","#vis");
+
+parse("charts/chart2.json","#vis2");
