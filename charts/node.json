@@ -36,7 +36,6 @@
         "enter": {
           "x": {"scale": "x", "field": "date"},
           "y": {"scale": "y", "field": "version"},
-          "y2": {"scale": "y", "value": 0},
           "stroke": {"value": "#80bd01"},
           "fill": {"value": "#80bd01"}
         },

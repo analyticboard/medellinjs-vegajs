@@ -1,0 +1,57 @@
+{
+  "width": 800,
+  "height": 300,
+  "padding": {"top": 10, "left": 30, "bottom": 30, "right": 10},
+  "data": [
+    {
+      "name": "table",
+      "url": "data/data.csv",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "date": "date"
+        }
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": {"data": "table", "field": "date"}
+    },
+    {
+      "name": "y",
+      "type": "log",
+      "range": "height",
+      "domain": {"data": "table", "field": "version"}
+    }
+  ],
+  "axes": [
+    {"type": "x", "scale": "x"},
+    {"type": "y", "scale": "y"}
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {"data": "table"},
+      "properties": {
+        "enter": {
+          "x": {"scale": "x", "field": "date"},
+          "y": {"scale": "y", "field": "version"},
+          "stroke": {"value": "#80bd01"},
+          "fill": {"value": "#80bd01"}
+        },
+        "update": {
+          "size": {"value": 10},
+          "fillOpacity": {"value": 1}
+        },
+        "hover": {
+          "size": {"value": 40},
+          "fillOpacity": {"value": 0.5}
+        }
+      }
+    }
+  ]
+}

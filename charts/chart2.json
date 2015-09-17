@@ -55,7 +55,7 @@
   ],
   "axes": [
     {"type": "x", "scale": "x","title":"date","offset":5},
-    {"type": "y", "scale": "originalVersion","title":"version","offset":5}
+    {"type": "y", "scale": "y","title":"version","offset":5}
   ],
   "marks": [
     {
